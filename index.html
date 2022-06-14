@@ -44,8 +44,8 @@
         diceRoll[i % 2] = rng.choice(digits);
       }
 
-      const dice = [`
-      <div class="dice first-face">
+      const dice = [
+      `<div class="dice first-face">
         <span class="dot">
         </span>
       </div>`
@@ -106,11 +106,26 @@
         //the event occurred
         document.getElementById("gameNumber").innerHTML = `Game-id: ${gameString.substring(0, 3)}-${gameString.substring(3)}`;
         document.getElementById("roundNumber").innerHTML = `Roll #${round}`;
-        document.getElementById("dice1").innerHTML = dice[diceRoll[0]-1];
-        document.getElementById("dice2").innerHTML = dice[diceRoll[1]-1];
+        let dice1 = document.getElementById("dice1");
+        dice1.innerHTML = dice[diceRoll[0]-1];
+        
+        let dice2 = document.getElementById("dice2");
+        dice2.innerHTML = dice[diceRoll[1]-1];
+        
+        setTimeout(() => {
+          dice1.childNodes[0].classList.add('thrown');
+          dice2.childNodes[0].classList.add('thrown');
+        }, 50);
+
         if(round === 1) {
           document.getElementById("previousRoll").remove();
         }
+        
+        /*if(round > 1) {
+          
+          document.getElementById("prevDice1").innerHTML = dice[diceRoll[0]-1];
+          document.getElementById("prevDice2").innerHTML = dice[diceRoll[1]-1];
+        }*/
       });
 
       function validate(evt) {
@@ -189,6 +204,15 @@
         height: 104px;
         border-radius: 2rem;
         margin-right : 10px;
+        transform: rotateZ(450deg);
+        opacity: 0.1;
+        transition-property: transform opacity;
+        transition-duration: 1s;
+        transition-delay: 50ms;
+      }
+      .thrown {
+        transform: rotateZ(0deg);
+        opacity: 1;
       }
       .dot {
         display: block;
@@ -277,6 +301,25 @@
         font-size: 1vmax;
       }
 
+      .prevDice {
+        display: flex;        
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .prevDice > div:first-of-type {
+        transform: scale(0.3);
+        width: 60px;
+        margin-right: -15px;
+      }
+
+      .prevDice > div:last-of-type {
+        transform: scale(0.3);
+        width: 60px;
+        margin-right: 10px;
+      }
+
     </style>
     <title>Dice roller for Super-Skill Pinball</title>
   </head>
@@ -291,7 +334,17 @@
       </div>
 
       <div id="prev">
-        <button id="previousRoll" class="roll" type="button" onclick="previousRoll()">Previous roll</button>
+        <div id="previousRoll">
+          <div class="prevDice">
+            <div>
+              <div id="prevDice1"></div>
+            </div>
+            <div>
+              <div id="prevDice2"></div>
+            </div>
+            <button id="previousRoll" class="roll" type="button" onclick="previousRoll()">Previous roll</button>
+          </div>
+        </div>
       </div>
 
       <div id="dice">
