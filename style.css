@@ -1,0 +1,137 @@
+/* Intial setup for displaying things in center */
+
+body {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  
+  background: linear-gradient(top, #222, #333);
+}
+
+/* Dice Faces, credit to https://betterprogramming.pub/creating-dice-in-flexbox-in-css-a02a5d85e516 */
+.first-face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dice {
+  padding: 15px;
+  background-color: rgb(255, 42, 184);
+  width: 104px;
+  height: 104px;
+  border-radius: 2rem;
+  margin-right : 10px;
+  transform: rotateZ(450deg);
+  opacity: 0.1;
+  transition-property: transform opacity;
+  transition-duration: 1s;
+  transition-delay: 50ms;
+}
+.thrown {
+  transform: rotateZ(0deg);
+  opacity: 1;
+}
+.dot {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color:rgb(0, 75, 160);
+}
+
+.second-face {
+  display: flex ;
+  justify-content: space-between;
+}
+
+.second-face .dot:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+.third-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.third-face .dot:nth-of-type(1) {
+  align-self :flex-end;
+}
+
+.third-face .dot:nth-of-type(2) {
+  align-self :center;
+}
+
+
+.fourth-face,
+.sixth-face,
+.fifth-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fourth-face .column,
+.sixth-face .column,
+.fifth-face .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fifth-face .column:nth-of-type(2) {
+  justify-content: center;
+}
+
+#dice {
+  display: flex;
+  justify-content: center;
+  margin: 4rem 0;
+}
+
+#next, #prev {
+  display: block;
+  height: 4rem;
+}
+
+
+.roll {
+  font-size: 2rem;
+}
+
+#sharedMessage {
+  margin: 1rem auto;
+  max-width: 50%;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.social {
+  margin: 4rem;
+}
+
+.success {
+  background-color: rgb(0, 236, 0);
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  font-size: 1vmax;
+}
+
+.prevDice {
+  display: flex;        
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.prevDice > div:first-of-type {
+  transform: scale(0.3);
+  width: 60px;
+  margin-right: -15px;
+}
+
+.prevDice > div:last-of-type {
+  transform: scale(0.3);
+  width: 60px;
+  margin-right: 10px;
+}
