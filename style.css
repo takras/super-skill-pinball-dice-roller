@@ -7,6 +7,11 @@ body {
   background: linear-gradient(top, #222, #333);
 }
 
+.footer {
+  width: 50vw;
+  margin: 0 auto;
+}
+
 /* Dice Faces, credit to https://betterprogramming.pub/creating-dice-in-flexbox-in-css-a02a5d85e516 */
 .first-face {
   display: flex;
